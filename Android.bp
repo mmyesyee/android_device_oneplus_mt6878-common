@@ -1,0 +1,6 @@
+soong_namespace {
+    imports: [
+        "device/oneplus/OP68F7L1",
+        "hardware/mediatek",
+    ],
+}

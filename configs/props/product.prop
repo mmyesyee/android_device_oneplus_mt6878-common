@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+# Stock ColorOS 16 /product/build.prop values for OP68F7L1, filtered
+
+remote_provisioning.hostname=remoteprovisioning.googleapis.com
+remote_provisioning.tee.rkp_only=0
+remote_provisioning.strongbox.rkp_only=1
+persist.wm.extensions.enabled=true
+ro.oplus.audio.product.para=KOF_AudioX_20260509_V3.0

@@ -1,0 +1,19 @@
+# NFC
+persist.vendor.nfc. u:object_r:vendor_nfc_prop:s0
+vendor.nfc.fw_status u:object_r:vendor_nfc_prop:s0
+
+# SKU
+ro.boot.product.hardware.sku u:object_r:vendor_sku_prop:s0
+ro.vendor.product.hardware.sku.variant  u:object_r:vendor_sku_prop:s0
+
+# TEE
+
+# Face
+vendor.faceauth.version u:object_r:vendor_faceauth_prop:s0 exact string
+
+# Custom/Mediatek
+persist.vendor.bluetooth.broadcaster.tx_pwr u:object_r:vendor_bluetooth_prop:s0
+
+# GPU / Mali — sepolicy_vndr already labels vendor.mali.,
+# persist.vendor.debug.gpud., and ro.vendor.arm.*
+ro.vendor.mtk.gpud. u:object_r:vendor_gpu_prop:s0
