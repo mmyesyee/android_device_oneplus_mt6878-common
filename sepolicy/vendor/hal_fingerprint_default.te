@@ -23,3 +23,8 @@ allow hal_fingerprint_default sysfs_fingerprint:file rw_file_perms;
 add_service(hal_fingerprint_default, hal_fingerprint_test_service)
 allow hal_fingerprint_default sysfs_leds:file rw_file_perms;
 allow hal_fingerprint_default sysfs_hbm:file rw_file_perms;
+
+# Stock OPLUS HAL (side-mounted sensor) publishes/reads its configuration
+# through these props; see device.mk for the defaults we seed.
+set_prop(hal_fingerprint_default, vendor_fingerprint_prop)
+get_prop(hal_fingerprint_default, vendor_fingerprint_prop)

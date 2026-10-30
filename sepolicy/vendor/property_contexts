@@ -17,3 +17,7 @@ persist.vendor.bluetooth.broadcaster.tx_pwr u:object_r:vendor_bluetooth_prop:s0
 # GPU / Mali — sepolicy_vndr already labels vendor.mali.,
 # persist.vendor.debug.gpud., and ro.vendor.arm.*
 ro.vendor.mtk.gpud. u:object_r:vendor_gpu_prop:s0
+
+# Fingerprint (stock OPLUS HAL, side-mounted sensor in the power button)
+persist.vendor.fingerprint. u:object_r:vendor_fingerprint_prop:s0
+persist.vendor.side.fp.    u:object_r:vendor_fingerprint_prop:s0

@@ -24,3 +24,6 @@ vendor_internal_prop(vendor_mtk_uce_prop)
 vendor_internal_prop(vendor_media_prop)
 
 
+
+# Fingerprint (stock OPLUS HAL, side-mounted sensor in the power button)
+vendor_internal_prop(vendor_fingerprint_prop)

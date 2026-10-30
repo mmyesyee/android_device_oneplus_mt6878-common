@@ -156,3 +156,16 @@
 # Metadata
 /metadata/boot_log\.txt                                             u:object_r:vendor_boot_log_file:s0
 /dmabuf(/.*)?                                                       u:object_r:dmabuf_device:s0
+
+# Fingerprint: stock OPLUS HAL for the side-mounted sensor lives in /odm and is
+# shipped as a blob. AOSP only labels the /vendor fingerprint binaries.
+/(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.biometrics\.fingerprint@2\.1-service     u:object_r:hal_fingerprint_default_exec:s0
+/(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.biometrics\.fingerprint@2\.1-service_uff u:object_r:hal_fingerprint_default_exec:s0
+/(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.biometrics\.fingerprintpay@1\.0-service  u:object_r:hal_fingerprint_default_exec:s0
+/dev/fingerprint_dev                                                                      u:object_r:fingerprint_device:s0
+/data/vendor/fingerprint(/.*)?                                                            u:object_r:fingerprint_vendor_data_file:s0
+/mnt/vendor/persist/fingerprint(/.*)?                                                     u:object_r:vendor_persist_fingerprint_file:s0
+
+# OPLUS-only daemons referenced by stock rc files we ship as blobs.
+/(odm|vendor/odm)/bin/init\.oplus\.storage\.io_metrics\.sh                                u:object_r:oplus_storage_io_metrics_exec:s0
+/(odm|vendor/odm)/bin/engineer_vendor_shell\.sh                                           u:object_r:engineer_vendor_daemon_exec:s0

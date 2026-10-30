@@ -1,0 +1,34 @@
+# Domains that exist only in OPLUS' own vendor sepolicy, which is not public.
+#
+# We ship the stock /odm init rc files as blobs, so a couple of them name a
+# domain we would otherwise not have:
+#
+#   odm/etc/init/init.oplus.storage.io_metrics.rc
+#       service oplus.storage.io_metrics.{on,off} ... seclabel u:r:oplus_storage_io_metrics:s0
+#   odm/etc/init/vendor_engineermode.rc
+#       exec u:r:engineer_vendor_daemon:s0 ... /odm/bin/engineer_vendor_shell.sh
+#
+# system/core/init/service.cpp calls setexeccon() for a service that carries a
+# seclabel and PLOG(FATAL)s when the call fails, i.e. a missing type turns into
+# a boot loop. Defining the types keeps the stock rc files usable.
+#
+# Both entries execute a #!/vendor/bin/sh script. The allows below are the
+# minimum the policy needs to be well-formed; the vendor/odm images built from
+# this tree still run with the stock "androidboot.selinux=permissive" command
+# line, so the daemons are not confined at runtime (see docs/device-OP68F7L1.md,
+# section "SELinux").
+
+type oplus_storage_io_metrics, domain;
+type oplus_storage_io_metrics_exec, exec_type, vendor_file_type, file_type;
+
+type engineer_vendor_daemon, domain;
+type engineer_vendor_daemon_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(oplus_storage_io_metrics)
+init_daemon_domain(engineer_vendor_daemon)
+
+allow oplus_storage_io_metrics vendor_shell_exec:file rx_file_perms;
+allow oplus_storage_io_metrics oplus_storage_io_metrics_exec:file rx_file_perms;
+
+allow engineer_vendor_daemon vendor_shell_exec:file rx_file_perms;
+allow engineer_vendor_daemon engineer_vendor_daemon_exec:file rx_file_perms;
